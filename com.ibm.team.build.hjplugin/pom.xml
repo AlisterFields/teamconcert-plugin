@@ -22,7 +22,7 @@
 	<version>1.1.9.8-SNAPSHOT</version>
 	<packaging>hpi</packaging>
 
-	<name>Team Concert Plugin</name>
+	<name>IBM i2 Team Concert Plugin</name>
 	<description>Integrates Jenkins with Rational Team Concert source control and build using the richer features of the build toolkit instead of the command line.</description>
 	<url>https://wiki.jenkins-ci.org/display/JENKINS/Team+Concert+Plugin</url>
 
@@ -92,12 +92,12 @@
 		<dependency>
 			<groupId>com.ibm.team.build</groupId>
 			<artifactId>com.ibm.team.build.hjplugin-rtc</artifactId>
-			<version>1.0.5</version>
+			<version>2.0.6</version>
 		</dependency>
 		<dependency>
 			<groupId>com.ibm.team.build</groupId>
 			<artifactId>com.ibm.team.build.hjplugin-rtc</artifactId>
-			<version>1.0.5</version>
+			<version>2.0.6</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
