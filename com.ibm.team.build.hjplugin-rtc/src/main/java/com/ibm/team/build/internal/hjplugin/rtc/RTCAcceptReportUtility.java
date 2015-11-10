@@ -40,23 +40,27 @@ public class RTCAcceptReportUtility {
 	 * added (accepted) v/s deleted (discarded), reverse the uuid value if an item is
 	 * deleted (discarded). 
 	 */
-	public static int hashCode(AcceptReport acceptReport) {
+	public static int hashCode(AcceptReport acceptReport, IConsoleOutput listener) {
 		Set<String> uuidSet = new HashSet<String>();
 		for (IComponentHandle addedComponents : acceptReport.getComponentAdds()) {
 			uuidSet.add(addedComponents.getItemId().getUuidValue());
+			listener.log("--ComponentAdds");
 		}
 		
 		for (IComponentHandle removedComponents : acceptReport.getComponentRemovals()) {
 			uuidSet.add(reverse(removedComponents.getItemId().getUuidValue()));
+			listener.log("--ComponentRemovals");
 		}
 		
 		for (IChangeSetHandle acceptChangeSet : acceptReport.getAcceptChangeSets()) {
 			uuidSet.add(acceptChangeSet.getItemId().getUuidValue());
+			listener.log("--AcceptChangeSets");
 		}
 		
-		for (IChangeSetHandle discardChangeSet : acceptReport.getDiscardChangeSets()) {
+		/*for (IChangeSetHandle discardChangeSet : acceptReport.getDiscardChangeSets()) {
 			uuidSet.add(reverse(discardChangeSet.getItemId().getUuidValue()));
-		}
+			listener.log("--DiscardChangeSets");
+		}*/
 		return uuidSet.hashCode(); 
 	}	
 }
