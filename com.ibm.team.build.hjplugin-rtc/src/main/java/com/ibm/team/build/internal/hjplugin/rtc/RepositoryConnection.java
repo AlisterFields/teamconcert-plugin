@@ -220,6 +220,10 @@ public class RepositoryConnection {
 	 */
 	public int incomingChanges(String buildDefinitionId, String buildWorkspaceName, IConsoleOutput listener,
 			IProgressMonitor progress, Locale clientLocale) throws Exception {
+
+		listener.log("RepositoryConnection.incomingChanges() called");
+
+
 		SubMonitor monitor = SubMonitor.convert(progress, 100);
 		ensureLoggedIn(monitor.newChild(10));
 		BuildWorkspaceDescriptor workspace;
@@ -229,7 +233,7 @@ public class RepositoryConnection {
 			if (buildDefinition == null) {
 				throw new RTCConfigurationException(Messages.get(clientLocale).RepositoryConnection_build_definition_not_found(buildDefinitionId));
 			}
-				
+
 			IBuildProperty property = buildDefinition.getProperty(
                     IJazzScmConfigurationElement.PROPERTY_WORKSPACE_UUID);
             if (property != null && property.getValue().length() > 0) {
@@ -243,7 +247,11 @@ public class RepositoryConnection {
 		}
 
 		AcceptReport report = SourceControlUtility.checkForIncoming(fRepositoryManager, workspace, monitor.newChild(80));
-		return RTCAcceptReportUtility.hashCode(report);
+		Integer i = (Integer) RTCAcceptReportUtility.hashCode(report, listener);
+
+		listener.log("com.ibm.team.build.internal.scm.SourceControlUtility.checkForIncoming() returned " + i.toString());
+
+		return i;
 	}
 
 	/**
