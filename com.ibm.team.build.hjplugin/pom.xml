@@ -94,7 +94,7 @@
 			<artifactId>com.ibm.team.build.hjplugin-rtc</artifactId>
 			<version>2.0.6</version>
 			<scope>system</scope>
-			<systemPath>${env.WORKSPACE}/com.ibm.team.build.hjplugin-rtc/target/com.ibm.team.build.hjplugin-rtc-2.0.6.jar</systemPath>
+			<systemPath>${env.WORKSPACE}/com.ibm.team.build.hjplugin-rtc-2.0.6.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.ibm.team.build</groupId>
