@@ -58,5 +58,30 @@ public class RTCAcceptReportUtility {
 			uuidSet.add(reverse(discardChangeSet.getItemId().getUuidValue()));
 		}
 		return uuidSet.hashCode(); 
-	}	
+	}
+
+	// IBM i2 modified version
+	public static int hashCode(AcceptReport acceptReport, IConsoleOutput listener) {
+		Set<String> uuidSet = new HashSet<String>();
+		for (IComponentHandle addedComponents : acceptReport.getComponentAdds()) {
+			uuidSet.add(addedComponents.getItemId().getUuidValue());
+			listener.log("--ComponentAdds");
+		}
+		
+		for (IComponentHandle removedComponents : acceptReport.getComponentRemovals()) {
+			uuidSet.add(reverse(removedComponents.getItemId().getUuidValue()));
+			listener.log("--ComponentRemovals");
+		}
+		
+		for (IChangeSetHandle acceptChangeSet : acceptReport.getAcceptChangeSets()) {
+			uuidSet.add(acceptChangeSet.getItemId().getUuidValue());
+			listener.log("--AcceptChangeSets");
+		}
+		
+		/*for (IChangeSetHandle discardChangeSet : acceptReport.getDiscardChangeSets()) {
+			uuidSet.add(reverse(discardChangeSet.getItemId().getUuidValue()));
+			listener.log("--DiscardChangeSets");
+		}*/
+		return uuidSet.hashCode(); 
+	}
 }
